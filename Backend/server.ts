@@ -51,7 +51,7 @@ import { YSocketIO } from "y-socket.io/dist/server";
 const app = express();
 const server = createServer(app);
 
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const io = new Server(server, {
   cors: {
     origin: "*",
@@ -78,7 +78,7 @@ app.get("/{*path}", (_req, res) => {
   res.sendFile(join(frontendPath, "index.html"));
 });
 
-server.listen(PORT, () => {
-  console.log("Frontend and backend running on port " + PORT);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Frontend and backend running on port ${PORT}`);
 });
 
